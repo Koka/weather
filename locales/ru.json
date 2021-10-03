@@ -1,0 +1,15 @@
+{
+  "lang": "Русский",
+  "app_title": "Погода в {place}",
+  "current_weather_in": "Погода в {place}:",
+  "feels_like": "ощущается как {temp}",
+  "wind": "Ветер {speed} м/с {direction}",
+  "dir.N": "С",
+  "dir.NE": "СВ",
+  "dir.E": "В",
+  "dir.SE": "ЮВ",
+  "dir.W": "З",
+  "dir.SW": "ЮЗ",
+  "dir.S": "Ю",
+  "dir.NW": "СЗ"
+}

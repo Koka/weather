@@ -2,6 +2,10 @@
   --main-bg-color: #0e726d;
   --main-fg-color: #fefefe;
 
+  --aux-bg-color: #c5c5a7;
+  --aux-fg-color: #000000;
+
   --font-family: sans-serif;
   --font-size: 24px;
+  --font-size-sm: 16px;
 }

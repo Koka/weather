@@ -1,6 +1,8 @@
+import { DeepReadonly } from 'ts-essentials'
+
 const API_URL = 'https://api.openweathermap.org/data/2.5/weather'
 
-export interface IWeatherResponse {
+interface IWeatherResponseMut {
   coord: {
     lon: number
     lat: number
@@ -15,8 +17,8 @@ export interface IWeatherResponse {
   main: {
     temp: number
     feels_like: number
-    temp_min: number
-    temp_max: number
+    temp_min?: number
+    temp_max?: number
     pressure: number
     humidity: number
   }
@@ -43,16 +45,22 @@ export interface IWeatherResponse {
   cod: number
 }
 
-export const getCurrentWeather = async (city: string) => {
+export type IWeatherResponse = DeepReadonly<IWeatherResponseMut>
+
+export const getCurrentWeather = async (city: string, lang: string) => {
   const url = new URL(API_URL)
   url.searchParams.append('q', city)
   url.searchParams.append('units', 'metric')
-  url.searchParams.append('lang', 'ru')
+  url.searchParams.append('lang', lang)
   url.searchParams.append('appid', process.env.OPENWEATHERMAP_API_KEY || '')
 
   const rs = await fetch(url.toString())
 
   const json = await rs.json()
+
+  if (json.cod !== 200) {
+    throw new Error(json.message || 'Error loading weather data')
+  }
 
   return json as IWeatherResponse
 }

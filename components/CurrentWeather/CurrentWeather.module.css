@@ -1,0 +1,6 @@
+.container {
+  padding: 32px;
+
+  background-color: var(--aux-bg-color);
+  color: var(--aux-fg-color)
+}

@@ -1,0 +1,15 @@
+{
+  "lang": "Français",
+  "app_title": "Météo à {place}",
+  "current_weather_in": "Météo à {place}:",
+  "feels_like": "ressemble à {temp}",
+  "wind": "Vent {speed} m/s {direction}",
+  "dir.N": "N",
+  "dir.NE": "NE",
+  "dir.E": "E",
+  "dir.SE": "SE",
+  "dir.W": "W",
+  "dir.SW": "SW",
+  "dir.S": "S",
+  "dir.NW": "NW"
+}
