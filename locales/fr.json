@@ -11,5 +11,7 @@
   "dir.W": "W",
   "dir.SW": "SW",
   "dir.S": "S",
-  "dir.NW": "NW"
+  "dir.NW": "NW",
+  "location_search.placeholder": "Emplacement",
+  "location_search.search_button": "OK"
 }

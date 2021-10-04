@@ -28,9 +28,10 @@ const BACKGROUNDS = {
 
 interface IProps {
   data: IWeatherResponse
+  onSearch: () => void
 }
 
-const CurrentWeather: FC<IProps> = ({ data }) => {
+const CurrentWeather: FC<IProps> = ({ data, onSearch }) => {
   const intl = useIntl()
 
   const faviconCode = data.weather?.[0]?.icon
@@ -48,7 +49,18 @@ const CurrentWeather: FC<IProps> = ({ data }) => {
 
       <div className={styles.container}>
         <div className={styles.weatherAux}>
-          <small>{intl.formatMessage({ id: 'current_weather_in' }, { place: data.name })}</small>
+          <small>
+            {intl.formatMessage(
+              { id: 'current_weather_in' },
+              {
+                place: (
+                  <button onClick={onSearch} className={styles.activateSearch}>
+                    {data.name}
+                  </button>
+                ),
+              }
+            )}
+          </small>
           <small>{intl.formatDate(new Date())}</small>
 
           <strong>{data.weather.map((w) => w.description).join(', ')}</strong>

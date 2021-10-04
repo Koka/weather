@@ -11,5 +11,7 @@
   "dir.W": "З",
   "dir.SW": "ЮЗ",
   "dir.S": "Ю",
-  "dir.NW": "СЗ"
+  "dir.NW": "СЗ",
+  "location_search.placeholder": "Местоположение",
+  "location_search.search_button": "OK"
 }
