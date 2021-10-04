@@ -45,7 +45,7 @@ const CurrentWeather: FC<IProps> = ({ data, onSearch }) => {
         <link rel="icon" href={`https://openweathermap.org/img/wn/${faviconCode}.png`} />
       </Head>
 
-      <Image src={bgUrl} alt="Background" layout="fill" priority quality={35} />
+      <Image src={bgUrl} alt="Background" layout="fill" priority quality={35} objectFit="cover" />
 
       <div className={styles.container}>
         <div className={styles.weatherAux}>
