@@ -1,7 +1,7 @@
 {
   "lang": "Français",
   "app_title": "Météo à {place}",
-  "current_weather_in": "Météo à {place}:",
+  "current_weather_in": "Météo à {place}",
   "feels_like": "ressemble à {temp}",
   "wind": "Vent {speed} m/s {direction}",
   "dir.N": "N",

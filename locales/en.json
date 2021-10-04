@@ -1,7 +1,7 @@
 {
   "lang": "English",
   "app_title": "Weather in {place}",
-  "current_weather_in": "Weather in {place}:",
+  "current_weather_in": "Weather in {place}",
   "feels_like": "feels like {temp}",
   "wind": "Wind {speed} m/s {direction}",
   "dir.N": "N",

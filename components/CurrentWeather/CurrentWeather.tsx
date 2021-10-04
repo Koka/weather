@@ -8,6 +8,23 @@ import { formatDegreesDirection } from '../../util/format/direction'
 import { formatCelsius } from '../../util/format/temperature'
 
 import styles from './CurrentWeather.module.css'
+import backgroundCloudy from '../../public/cloudy.jpg'
+import backgroundRainy from '../../public/rainy.jpg'
+import backgroundThunderstorm from '../../public/thunderstorm.jpg'
+import backgroundSnow from '../../public/snow.jpg'
+import backgroundClear from '../../public/clear.jpg'
+import backgroundAtmosphere from '../../public/atmosphere.jpg'
+
+const BACKGROUNDS = {
+  rain: backgroundRainy,
+  clouds: backgroundCloudy,
+  thunderstorm: backgroundThunderstorm,
+  drizzle: backgroundRainy,
+  snow: backgroundSnow,
+  atmosphere: backgroundAtmosphere,
+  clear: backgroundClear,
+  mist: backgroundAtmosphere,
+}
 
 interface IProps {
   data: IWeatherResponse
@@ -15,13 +32,36 @@ interface IProps {
 
 const CurrentWeather: FC<IProps> = ({ data }) => {
   const intl = useIntl()
+
+  const conditions = data.weather?.[0]?.main?.toLowerCase() || 'clear'
+  const bgUrl = BACKGROUNDS[conditions as keyof typeof BACKGROUNDS] || BACKGROUNDS['clear']
+
   return (
     <>
       <Head>
         <title>{intl.formatMessage({ id: 'app_title' }, { place: data.name })}</title>
       </Head>
+
+      <Image src={bgUrl} alt="Background" layout="fill" priority quality={35} />
+
       <div className={styles.container}>
-        <div>
+        <div className={styles.weatherAux}>
+          <small>{intl.formatMessage({ id: 'current_weather_in' }, { place: data.name })}</small>
+          <small>{intl.formatDate(new Date())}</small>
+
+          <strong>{data.weather.map((w) => w.description).join(', ')}</strong>
+          <small>
+            {intl.formatMessage(
+              { id: 'wind' },
+              {
+                speed: intl.formatNumber(Math.round(data.wind.speed), { useGrouping: false }),
+                direction: intl.formatMessage({ id: `dir.${formatDegreesDirection(data.wind.deg)}` }),
+              }
+            )}
+          </small>
+        </div>
+
+        <div className={styles.weatherMain}>
           {data.weather.map((w) => (
             <div key={w.id}>
               <Image
@@ -34,24 +74,11 @@ const CurrentWeather: FC<IProps> = ({ data }) => {
               />
             </div>
           ))}
-        </div>
-        <div>
-          <div>{intl.formatMessage({ id: 'current_weather_in' }, { place: data.name })}</div>
           <div>
-            <div>{data.weather.map((w) => w.description).join(', ')}</div>
-            <div>
-              {formatCelsius(intl, data.main.temp)} (
-              {intl.formatMessage({ id: 'feels_like' }, { temp: formatCelsius(intl, data.main.feels_like) })})
-            </div>
-          </div>
-          <div>
-            {intl.formatMessage(
-              { id: 'wind' },
-              {
-                speed: data.wind.speed,
-                direction: intl.formatMessage({ id: `dir.${formatDegreesDirection(data.wind.deg)}` }),
-              }
-            )}
+            <strong>{formatCelsius(intl, data.main.temp)}</strong>
+            <small>
+              {intl.formatMessage({ id: 'feels_like' }, { temp: formatCelsius(intl, data.main.feels_like) })}
+            </small>
           </div>
         </div>
       </div>

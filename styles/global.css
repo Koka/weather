@@ -1,9 +1,6 @@
 html,
 body,
 #__next {
-  background-color: var(--main-bg-color);
-  color: var(--main-fg-color);
-
   font-family: var(--font-family);
   font-size: var(--font-size);
 

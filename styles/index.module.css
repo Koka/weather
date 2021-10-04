@@ -1,4 +1,6 @@
 .wrapper {
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6,9 +8,12 @@
 
   width: 100%;
   height: 100%;
+
+  background-color: var(--main-bg-color);
+  color: var(--main-fg-color);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 640px) {
   .wrapper {
     display: block;
   }
