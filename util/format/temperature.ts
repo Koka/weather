@@ -7,5 +7,5 @@ export const formatCelsius = (intl: IntlShape, temp: number) => {
     useGrouping: false,
   })
 
-  return `${numberPart} \u2103`
+  return `${numberPart}\u00B0C`
 }

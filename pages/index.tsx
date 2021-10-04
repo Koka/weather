@@ -17,7 +17,7 @@ interface IProps {
   locales: string[]
 }
 
-export const getServerSideProps: GetServerSideProps<IProps> = async ({ query, locale, locales, defaultLocale }) => {
+export const getServerSideProps: GetServerSideProps<IProps> = async ({ res, query, locale, locales, defaultLocale }) => {
   const currentLocale = (locale || defaultLocale)!
 
   try {
@@ -25,6 +25,8 @@ export const getServerSideProps: GetServerSideProps<IProps> = async ({ query, lo
     const lang = currentLocale.substring(0, 2)
 
     const data = await getCurrentWeather(city, lang)
+
+    res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=3600')
 
     return {
       props: {
@@ -47,7 +49,6 @@ const Main: NextPage<IProps> = ({ data, defaultLocale, locales, locale: currentL
     <>
       <Head>
         <title>Simple Weather App</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.wrapper}>
         <IntlProvider

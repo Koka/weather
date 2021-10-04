@@ -33,6 +33,7 @@ interface IProps {
 const CurrentWeather: FC<IProps> = ({ data }) => {
   const intl = useIntl()
 
+  const faviconCode = data.weather?.[0]?.icon
   const conditions = data.weather?.[0]?.main?.toLowerCase() || 'clear'
   const bgUrl = BACKGROUNDS[conditions as keyof typeof BACKGROUNDS] || BACKGROUNDS['clear']
 
@@ -40,6 +41,7 @@ const CurrentWeather: FC<IProps> = ({ data }) => {
     <>
       <Head>
         <title>{intl.formatMessage({ id: 'app_title' }, { place: data.name })}</title>
+        <link rel="icon" href={`https://openweathermap.org/img/wn/${faviconCode}.png`} />
       </Head>
 
       <Image src={bgUrl} alt="Background" layout="fill" priority quality={35} />
