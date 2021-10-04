@@ -6,6 +6,8 @@ import 'nprogress/nprogress.css'
 
 const ProgressBar = () => {
   useEffect(() => {
+    NProgress.configure({ showSpinner: false })
+
     function load() {
       NProgress.start()
     }
